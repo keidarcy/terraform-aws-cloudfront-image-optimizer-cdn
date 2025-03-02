@@ -30,7 +30,7 @@ This Terraform module sets up a serverless image optimization and delivery pipel
 
 ```hcl
 module "image_optimizer_cdn" {
-  source = "github.com/keidarcy/terraform-aws-cloudfront-image-optimizer-cdn"
+  source = "keidarcy/cloudfront-image-optimizer-cdn/aws"
 
   name               = "my-image-cdn"
   source_bucket_name = "my-original-images"

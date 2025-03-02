@@ -233,7 +233,7 @@ resource "aws_cloudfront_distribution" "image_delivery" {
   default_cache_behavior {
     allowed_methods        = ["GET", "HEAD", "OPTIONS"]
     cached_methods         = ["GET", "HEAD"]
-    target_origin_id       = "S3"
+    target_origin_id       = "ImageOriginGroup"
     compress               = true
     viewer_protocol_policy = "redirect-to-https"
 
