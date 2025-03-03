@@ -43,7 +43,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "transformed" {
 resource "aws_s3_bucket_versioning" "transformed" {
   bucket = aws_s3_bucket.transformed.id
   versioning_configuration {
-    status = "Enabled"
+    status = var.enable_bucket_versioning ? "Enabled" : "Disabled"
   }
 }
 

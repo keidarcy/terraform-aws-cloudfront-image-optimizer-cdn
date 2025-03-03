@@ -1,6 +1,7 @@
 variable "name" {
   description = "Name prefix for all resources created by this module"
   type        = string
+  default     = null
 }
 
 variable "source_bucket_name" {
@@ -8,8 +9,18 @@ variable "source_bucket_name" {
   type        = string
 }
 
-variable "dest_bucket_name" {
-  description = "Name of the destination bucket"
+variable "lambda_layer_arn" {
+  description = "ARN of the Lambda layer containing Sharp library"
+  type        = string
+}
+
+variable "domain_name" {
+  description = "Domain name for the CloudFront distribution"
+  type        = string
+}
+
+variable "acm_certificate_arn" {
+  description = "ACM certificate ARN for the CloudFront distribution"
   type        = string
 }
 

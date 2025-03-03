@@ -19,6 +19,12 @@ variable "transformed_image_expiration_days" {
   default     = 90
 }
 
+variable "enable_bucket_versioning" {
+  description = "Whether to enable versioning for the transformed images bucket"
+  type        = bool
+  default     = true
+}
+
 variable "transformed_image_cache_ttl" {
   description = "Cache-Control header value for transformed images"
   type        = string

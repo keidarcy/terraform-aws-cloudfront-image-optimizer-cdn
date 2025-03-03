@@ -40,6 +40,10 @@ module "image_optimizer_cdn" {
   acm_certificate_arn  = "arn:aws:acm:us-east-1:account:certificate/xxx"
   enable_acm_certificate = true
 
+  # Optional: Configure bucket versioning and lifecycle
+  enable_bucket_versioning         = true # Enable versioning (default: true)
+  transformed_image_expiration_days = 90  # Days until transformed images expire
+
   tags = {
     Environment = "production"
     Project     = "image-processing"
@@ -90,6 +94,7 @@ The Lambda function uses:
 | acm_certificate_arn | ACM certificate ARN for custom domain | string | no |
 | enable_acm_certificate | Whether to use custom domain with ACM | bool | no |
 | transformed_image_expiration_days | Days until transformed images expire | number | no |
+| enable_bucket_versioning | Whether to enable versioning for transformed images bucket | bool | no |
 | transformed_image_cache_ttl | Cache-Control header for transformed images | string | no |
 | max_image_size | Maximum size of transformed images in bytes | number | no |
 | lambda_memory | Memory allocation for Lambda function | number | no |

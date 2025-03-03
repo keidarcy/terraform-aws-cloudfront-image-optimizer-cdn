@@ -19,7 +19,16 @@ module "heic_converter" {
   name = var.name != null ? var.name : "photo-converter"
 
   source_bucket_name = var.source_bucket_name
-  dest_bucket_name   = var.dest_bucket_name
+  lambda_layer_arn   = var.lambda_layer_arn
+
+  # Domain configuration
+  domain_name            = var.domain_name
+  acm_certificate_arn    = var.acm_certificate_arn
+  enable_acm_certificate = true
+
+  # Optional: Configure bucket versioning and lifecycle
+  enable_bucket_versioning          = true # Enable versioning (default: true)
+  transformed_image_expiration_days = 90   # Days until transformed images expire
 
   tags = {
     Project   = var.name
@@ -28,11 +37,16 @@ module "heic_converter" {
 }
 
 output "source_bucket" {
-  description = "Name of the bucket where you should upload HEIC files"
+  description = "Name of the bucket where you should upload original images"
   value       = module.heic_converter.source_bucket_name
 }
 
-output "processed_bucket" {
-  description = "Name of the bucket where you will find the converted JPEG files"
-  value       = module.heic_converter.processed_bucket_name
+output "transformed_bucket" {
+  description = "Name of the bucket where transformed images are stored"
+  value       = module.heic_converter.transformed_bucket_name
+}
+
+output "cloudfront_domain" {
+  description = "Domain name of the CloudFront distribution"
+  value       = module.heic_converter.cloudfront_domain_name
 }
